@@ -8,10 +8,11 @@ datasource db {
 }
 
 model User {
-  id     Int    @id @default(autoincrement())
-  email  String
-  name   String
-  social Json
+  id        Int    @id @default(autoincrement())
+  email     String
+  firstName String
+  lastName  String
+  social    Json
 
   // Relation Fields
   courses      CourseEnrollment[]

@@ -6,6 +6,18 @@ const prisma = new PrismaClient()
 
 // A `main` function so that we can use async/await
 async function main() {
+
+  const user = await prisma.user.create({
+    data: {
+      email: 'adam@test.com',
+      firstName: 'Adam',
+      lastName: 'Watkins',
+      social: {
+        facebook: 'adamwats',
+        twitter: 'adamdawats'
+      }
+    }
+  })
 }
 
 main()

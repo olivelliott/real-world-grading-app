@@ -20,6 +20,10 @@ The goal if this application is to showcase a real-world scenario of an applicat
 
 Check out the [**associated tutorial**](https://www.prisma.io/blog/modern-backend-1-tsjs1ps7kip1/) to learn more about how the backend was built.
 
+## Workflow
+
+![](./src/assets/prisma-client-generation-workflow.png)
+
 ## Data model
 
 The development of this project is driven by the database schema (also known as the data model).
