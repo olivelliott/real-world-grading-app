@@ -53,3 +53,7 @@ Install npm dependencies:
 ```
 npm install
 ```
+
+## Credits
+
+[Prisma Blog](https://www.prisma.io/blog/backend-prisma-typescript-orm-with-postgresql-data-modeling-tsjs1ps7kip1)
