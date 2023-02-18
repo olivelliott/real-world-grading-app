@@ -1,9 +1,5 @@
 # Real-world class grading backend
 
-## ⚠️ Warning
-
-This repo is no longer actively maintained, however it's still a [great educational](https://www.prisma.io/blog/backend-prisma-typescript-orm-with-postgresql-data-modeling-tsjs1ps7kip1) resource for building REST APIs in Node.js. 
-
 ## Intro
 
 A real-world class grading application built with Prisma.
@@ -28,6 +24,8 @@ Check out the [**associated tutorial**](https://www.prisma.io/blog/modern-backen
 
 The development of this project is driven by the database schema (also known as the data model).
 The schema is first designed to represent the following concepts:
+
+![](./src/assets/grading-app-schema.png)
 
 - **User**: this can be a student or a teacher, or both. The role of the user is determined through their association with a course.
 - **Course**: represent a course that can have multiple students/teachers. Each user can be associated with multiple courses either as a student or as a teacher.

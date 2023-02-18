@@ -7,103 +7,108 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id        Int     @id @default(autoincrement())
-  email     String  @unique
-  firstName String?
-  lastName  String?
-  social    Json?
-  isAdmin   Boolean @default(false)
+// * Self Made models
 
-  // Relation fields
-  courses     CourseEnrollment[]
-  testResults TestResult[]       @relation(name: "results")
-  testsGraded TestResult[]       @relation(name: "graded")
-  tokens      Token[]
-  feedback    CourseFeedback[]
-}
 
-model Token {
-  id         Int       @id @default(autoincrement())
-  createdAt  DateTime  @default(now())
-  updatedAt  DateTime  @updatedAt
-  type       TokenType
-  emailToken String?   @unique // Only used for short lived email tokens
-  valid      Boolean   @default(true)
-  expiration DateTime
 
-  // Relation fields
-  user   User @relation(fields: [userId], references: [id])
-  userId Int
-}
 
-model Course {
-  id            Int     @id @default(autoincrement())
-  name          String
-  courseDetails String?
+// * Prefilled models
+// model User {
+//   id        String  @id @default(uuid())
+//   email     String  @unique
+//   firstName String?
+//   lastName  String?
+//   social    Json?
+//   isAdmin   Boolean @default(false)
 
-  // Relation fields
-  members  CourseEnrollment[]
-  tests    Test[]
-  feedback CourseFeedback[]
-}
+//   // Relation fields
+//   courses     CourseEnrollment[]
+//   testResults TestResult[]       @relation(name: "results")
+//   testsGraded TestResult[]       @relation(name: "graded")
+//   tokens      Token[]
+//   feedback    CourseFeedback[]
+// }
 
-model CourseFeedback {
-  id       Int    @id @default(autoincrement())
-  feedback String @db.Text
+// model Token {
+//   id         Int       @id @default(autoincrement())
+//   createdAt  DateTime  @default(now())
+//   updatedAt  DateTime  @updatedAt
+//   type       TokenType
+//   emailToken String?   @unique // Only used for short lived email tokens
+//   valid      Boolean   @default(true)
+//   expiration DateTime
 
-  studentId Int
-  courseId  Int
-  student   User   @relation(fields: [studentId], references: [id])
-  course    Course @relation(fields: [courseId], references: [id])
-}
+//   // Relation fields
+//   user   User   @relation(fields: [userId], references: [id])
+//   userId String
+// }
 
-model CourseEnrollment {
-  createdAt DateTime @default(now())
-  role      UserRole
+// model Course {
+//   id            Int     @id @default(autoincrement())
+//   name          String
+//   courseDetails String?
 
-  // Relation Fields
-  userId   Int
-  courseId Int
-  user     User   @relation(fields: [userId], references: [id])
-  course   Course @relation(fields: [courseId], references: [id])
+//   // Relation fields
+//   members  CourseEnrollment[]
+//   tests    Test[]
+//   feedback CourseFeedback[]
+// }
 
-  @@id([userId, courseId])
-  @@index([userId, role])
-}
+// model CourseFeedback {
+//   id        Int    @id @default(autoincrement())
+//   feedback  String @db.Text
+//   studentId String
+//   courseId  Int
+//   student   User   @relation(fields: [studentId], references: [id])
+//   course    Course @relation(fields: [courseId], references: [id])
+// }
 
-model Test {
-  id        Int      @id @default(autoincrement())
-  updatedAt DateTime @updatedAt
-  name      String
-  date      DateTime
+// model CourseEnrollment {
+//   createdAt DateTime @default(now())
+//   role      UserRole
 
-  // Relation Fields
-  courseId    Int
-  course      Course       @relation(fields: [courseId], references: [id])
-  testResults TestResult[]
-}
+//   // Relation Fields
+//   userId   String
+//   courseId Int
+//   user     User   @relation(fields: [userId], references: [id])
+//   course   Course @relation(fields: [courseId], references: [id])
 
-model TestResult {
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  result    Int // Percentage precise to one decimal point represented as `result * 10^-1`
+//   @@id([userId, courseId])
+//   @@index([userId, role])
+// }
 
-  // Relation Fields
-  studentId Int
-  student   User @relation(name: "results", fields: [studentId], references: [id])
-  graderId  Int
-  gradedBy  User @relation(name: "graded", fields: [graderId], references: [id])
-  testId    Int
-  test      Test @relation(fields: [testId], references: [id])
-}
+// model Test {
+//   id        Int      @id @default(autoincrement())
+//   updatedAt DateTime @updatedAt
+//   name      String
+//   date      DateTime
 
-enum UserRole {
-  STUDENT
-  TEACHER
-}
+//   // Relation Fields
+//   courseId    Int
+//   course      Course       @relation(fields: [courseId], references: [id])
+//   testResults TestResult[]
+// }
 
-enum TokenType {
-  EMAIL // used as a short lived token sent to the user's email
-  API
-}
+// model TestResult {
+//   id        Int      @id @default(autoincrement())
+//   createdAt DateTime @default(now())
+//   result    Int // Percentage precise to one decimal point represented as `result * 10^-1`
+
+//   // Relation Fields
+//   studentId String
+//   student   User   @relation(name: "results", fields: [studentId], references: [id])
+//   graderId  String
+//   gradedBy  User   @relation(name: "graded", fields: [graderId], references: [id])
+//   testId    Int
+//   test      Test   @relation(fields: [testId], references: [id])
+// }
+
+// enum UserRole {
+//   STUDENT
+//   TEACHER
+// }
+
+// enum TokenType {
+//   EMAIL // used as a short lived token sent to the user's email
+//   API
+// }
