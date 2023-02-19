@@ -23,7 +23,7 @@ model User {
 model Course {
   id               Int                @id @default(autoincrement())
   name             String
-  courseDetails    Json
+  courseDetails    String?
   tests            Test[]
   courseEnrollment CourseEnrollment[]
 }
@@ -33,9 +33,9 @@ model Test {
   updatedAt DateTime @updatedAt
   name      String
   date      DateTime
-  courseId  Int
 
   // Relation Fields
+  courseId    Int
   course      Course       @relation(fields: [courseId], references: [id])
   testResults TestResult[]
 }

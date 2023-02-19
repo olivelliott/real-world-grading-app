@@ -2,7 +2,8 @@
 
 ## Intro
 
-A real-world class grading application built with Prisma.
+A real-world class grading application built with Prisma using the instructions found on the [Prisma Blog](https://www.prisma.io/blog/backend-prisma-typescript-orm-with-postgresql-data-modeling-tsjs1ps7kip1)
+.
 
 The grading application is used to manage enrollment in online classes, tests (as in exams) for classes, and test results.
 
@@ -59,5 +60,4 @@ npm install
 ```
 
 ## Credits
-
-[Prisma Blog](https://www.prisma.io/blog/backend-prisma-typescript-orm-with-postgresql-data-modeling-tsjs1ps7kip1)
+[Daniel Norman GitHub](https://github.com/2color/real-world-grading-app)
